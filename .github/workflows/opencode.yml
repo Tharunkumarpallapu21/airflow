@@ -20,15 +20,17 @@ jobs:
       contains(github.event.comment.body, '/oc')
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      pull-requests: write
+      issues: write
       id-token: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          fetch-depth: 1
-          persist-credentials: false
+          fetch-depth: 0
+          persist-credentials: true
 
       - name: Run OpenCode
         uses: anomalyco/opencode/github@latest

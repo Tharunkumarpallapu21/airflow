@@ -6,6 +6,11 @@ on:
   pull_request_review_comment:
     types: [created]
   workflow_dispatch:
+    inputs:
+      prompt:
+        description: 'Task prompt for OpenCode'
+        required: true
+        default: 'Analyze the repository structure'
 
 jobs:
   opencode:
@@ -29,4 +34,5 @@ jobs:
         uses: anomalyco/opencode/github@latest
         with:
           model: opencode/deepseek-v4.1-flash-free
+          prompt: ${{ inputs.prompt }}
           
